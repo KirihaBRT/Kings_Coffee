@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Sidebar menu With Sub-menus | Using HTML, CSS & JQuery</title>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+   <link rel="stylesheet" href="css/main.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
+</head>
+<body>
+
+    <div class="header">
+      <!-- Menu button in the header -->
+      <div class="menu-btn">
+        <i class="fas fa-bars"></i>
+      </div>
+      <button class="logout-btn">Logout</button>
+    </div>
+
+    <div class="side-bar">
+
+      <header>
+        <!-- close button -->
+          <div class="close-btn">
+            <i class="fas fa-times"></i>
+          </div>
+          <img src="images/logo.png" alt="kings coffee logo">
+      </header>
+
+      <div class="sidemenu">
+          <div class="item">
+            <a href="#" class="content-link" data-content="Dashboard"><i class="fas fa-desktop"></i>Dashboard</a>
+          </div>
+          <div class="item">
+            <a href="#" class="content-link" data-content="Employee"><i class="fas fa-user"></i>User Management</a>
+          </div>
+          <div class="item">
+            <a href="#" class="content-link" data-content="Menu"><i class="fas fa-table"></i>Menu Management</a>
+          </div>
+          <div class="item">
+            <a href="#" class="content-link" data-content="Transaction"><i class="fas fa-business-time"></i>Transactions</a>
+          </div>
+          <div class="item">
+            <a href="#" class="content-link" data-content="Settings"><i class="fas fa-cogs"></i>Settings</a>
+          </div>
+          <div class="item">
+            <a href="#" class="content-link" data-content="About"><i class="fas fa-info-circle"></i>About</a>
+          </div>
+      </div>
+
+    </div>
+
+    <div class="page-content">
+
+    <!-- Dashboard Content -->
+    <div class="dashboard-content" style="display:none;">
+      <!-- Dashboard content goes here -->
+      <main>
+        <h1>Dashboard</h1>
+            <!-- Analyses -->
+            <div class="analyse">
+                <div class="sales">
+                    <div class="status">
+                        <div class="info">
+                            <h3>Total Sales</h3>
+                            <h1>₱65,024</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="visits">
+                    <div class="status">
+                        <div class="info">
+                            <h3>Products</h3>
+                            <h1>15</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="searches">
+                    <div class="status">
+                        <div class="info">
+                            <h3>others</h3>
+                            <h1>14,147</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="recent-orders">
+              <h2>Sales Report</h2>
+              <table>
+                  <thead>
+                      <tr>
+                          <th>Daily sales</th>
+                          <th>Weekly sales</th>
+                          <th>Monthly sales</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                    <!-- database content here -->
+                  </tbody>
+              </table>
+          </div>
+      </main>
+        
+    </div>
+
+    <!-- Employee Content -->
+    <div class="employee-content" style="display:none;">
+      <h1>Employee Management</h1>
+      <div class="table-container">
+
+        <!-- Search input and filter button -->
+        <input type="text" id="searchInput" placeholder=" Filter by UserID, Name, Username, or Role...">
+        <!-- Add button for employee table -->
+        <button class="add-btn-employee">Add Employee</button>
+
+        <!-- Employee Table -->
+        <table class="employee-table">
+              <!-- Table Content -->
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>User Name</th>
+                  <th>Password</th>
+                  <th>Role</th>
+                  <th>Actions</th>
+                  <!-- Add more table headers as needed -->
+                </tr>
+              </thead>
+              <tbody>
+                <!-- tbody employee -->
+              </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Menu Management Content -->
+    <div class="menu-content" style="display:none;">
+      <h1>Menu Management</h1>
+      <div class="table-container">
+      <input type="text" id="searchInputMenu" placeholder=" Filter by ID, etc...">
+        <!-- Add button for menu table -->
+      <button class="add-btn-menu">Add Menu Item</button>
+        <!-- Menu Management Table -->
+          <table class="menu-table">
+            <thead>
+              <tr>
+                <!-- Header Row-->
+                <th>ID</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Category</th>
+                <th class="actions-column">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+            <!-- tbody content-->
+            </tbody>
+          </table>
+      </div>
+    </div>
+
+    <div class="about-content" style="display: none;">
+      <h1>About Page</h1>
+        <p>This is the about page content.</p>
+    </div>
+
+    </div>
+
+  <!-- Updated Add Employee Modal -->
+  <div id="addEmployeeModal" class="modal">
+    <div class="modal-content">
+      <span class="close-modal">&times;</span>
+      <h2>Add Employee</h2>
+      <!-- Form for adding employee data -->
+      <form id="addEmployeeForm">
+        <label for="addEmployeeName">Name:</label> <br>
+        <input type="text" id="addEmployeeName" name="addEmployeeName" required> <br>
+
+        <label for="addEmployeeUsername">Username:</label> <br>
+        <input type="text" id="addEmployeeUsername" name="addEmployeeUsername" required> <br>
+
+        <label for="addEmployeePassword">Password:</label> <br>
+        <input type="text" id="addEmployeePassword" name="addEmployeePassword" required> <br>
+
+        <label for="addEmployeeRole">Role:</label><br>
+        <select id="addEmployeeRole" name="addEmployeeRole" required>
+          <option value="Cashier">Cashier</option>
+          <option value="Manager">Manager</option>
+          <option value="Admin">Admin/Owner</option>
+        </select>
+        <br>
+
+        <button type="submit" class="btn-add">Add Employee</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Edit Employee Modal -->
+  <div class="modal" id="editEmployeeModal">
+      <div class="modal-content">
+          <span class="close-modal">&times;</span>
+          <h2>Edit Employee</h2>
+          <!-- Form for editing employee data -->
+          <form id="editEmployeeForm">
+              <label for="editEmployeeName">Name:</label> <br>
+              <input type="text" id="editEmployeeName" name="editEmployeeName" required> <br>
+
+              <label for="editEmployeeUsername">Username:</label> <br>
+              <input type="text" id="editEmployeeUsername" name="editEmployeeUsername" required> <br>
+
+              <label for="editEmployeePassword">Password:</label> <br>
+              <input type="text" id="editEmployeePassword" name="editEmployeePassword" required> <br>
+
+              <label for="editEmployeeRole">Role:</label> <br>
+              <select id="editEmployeeRole" name="editEmployeeRole" required>
+                  <option value="Cashier">Cashier</option>
+                  <option value="Manager">Manager</option>
+                  <option value="Admin">Admin/Owner</option>
+              </select>
+              <br>
+
+              <button type="submit" class="save-changes-btn">Save Changes</button>
+          </form>
+      </div>
+  </div>
+
+  <!-- Edit Menu Item Modal -->
+    <div id="editMenuModal" class="modal">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2>Edit Menu Item</h2>
+        <p id="editMenuItemOriginalPrice" class="original-price"></p>
+        <form id="editMenuForm">
+          <label for="editMenuItemName">Name:</label> <br>
+          <input type="text" id="editMenuItemName" required> <br>
+          <label for="editMenuItemPrice">Price:</label> <br>
+          <input type="number" id="editMenuItemPrice" required>
+          <label for="editMenuItemCategory">Category:</label> <br>
+          <select id="editMenuItemCategory" required>
+            <option value="Espresso Masterpiece (Hot)">Espresso Masterpiece (Hot)</option>
+            <option value="Premium Iced Coffees">Premium Iced Coffees</option>
+            <option value="Specialty Coffees (Hot/Iced)">Specialty Coffees (Hot/Iced)</option>
+            <option value="King's Coffee Signature Blended">King's Coffee Signature Blended</option>
+            <option value="Cream Base Ice Blended">Cream Base Ice Blended</option>
+            <option value="Italian Soda">Italian Soda</option>
+            <option value="Milk Tea">Milk Tea</option>
+            <option value="Fruit Juices">Fruit Juices</option>
+            <option value="Non-Coffee">Non-Coffee</option>
+            <option value="Pasta">Pasta</option>
+            <option value="Sandwiches">Sandwiches</option>
+            <option value="Pancakes">Pancakes</option>
+            <option value="American Breakfast (All Day)">American Breakfast (All Day)</option>
+          </select>
+          <button type="submit" class="save-changes-btn">Save Changes</button>
+        </form>
+      </div>
+    </div>
+
+  <!-- Add Menu Modal -->
+    <div id="addMenuModal" class="modal">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2>Add Menu Item</h2>
+        <form id="addMenuForm">
+          <label for="addMenuItemName">Name:</label> <br>
+          <input type="text" id="addMenuItemName" required> <br>
+
+          <label for="addMenuItemPrice">Price:</label> <br>
+          <input type="text" id="addMenuItemPrice" required>
+
+          <label for="addMenuItemCategory">Category:</label> <br>
+          <select id="addMenuItemCategory" required>
+            <option value="Espresso Masterpiece (Hot)">Espresso Masterpiece (Hot)</option>
+            <option value="Premium Iced Coffees">Premium Iced Coffees</option>
+            <option value="Specialty Coffees (Hot/Iced)">Specialty Coffees (Hot/Iced)</option>
+            <option value="King's Coffee Signature Blended">King's Coffee Signature Blended</option>
+            <option value="Cream Base Ice Blended">Cream Base Ice Blended</option>
+            <option value="Italian Soda">Italian Soda</option>
+            <option value="Milk Tea">Milk Tea</option>
+            <option value="Fruit Juices">Fruit Juices</option>
+            <option value="Non-Coffee">Non-Coffee</option>
+            <option value="Pasta">Pasta</option>
+            <option value="Sandwiches">Sandwiches</option>
+            <option value="Pancakes">Pancakes</option>
+            <option value="American Breakfast (All Day)">American Breakfast (All Day)</option>
+          </select> <br>
+
+          <button type="submit" class="btn-add">Add Menu Item</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Confirmation to Delete Row Modal -->
+    <div id="confirmationModal" class="modal">
+        <div class="modal-content">
+            <p id="confirmationMessage"></p>
+            <button id="confirmDeleteBtn" class="delete-btn-confirmed">Delete</button>
+            <button class="close-modal">Cancel</button>
+        </div>
+    </div>
+
+  <script src="js/script.js"></script>
+
+</body>
+</html>
