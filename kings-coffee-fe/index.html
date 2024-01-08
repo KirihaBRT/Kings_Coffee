@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>King's Coffee Point-of-Sales System</title>
+  <link rel="icon" type="image/x-icon" href="utils/images/logo-mini.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="utils/css/main.css">
+  <link rel="stylesheet" href="utils/bootstrap-4.0.0/dist/css/bootstrap.css">
+</head>
+<body>
+  <div class="header">
+    <!-- Menu button in the header -->
+    <div class="menu-btn">
+      <i class="fas fa-bars"></i>
+    </div>
+    <button class="logout-btn">Logout</button>
+  </div>
+  <div class="loading-container" style="display:none;">
+    <img src="utils/images/loading-unscreen.gif" alt="Loading...">
+    <p>Loading...</p>
+  </div>
+  <div class="side-bar active">
+    <header>
+      <!-- close button -->
+        <div class="close-btn">
+          <i class="fas fa-times"></i>
+        </div>
+        <img src="utils/images/logo.png" alt="kings coffee logo">
+    </header>
+    <div class="sidemenu">
+    </div>
+  </div>
+  <div class="page-content"> 
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
+  <script src="utils/js/constants.js"></script>
+  <script src="utils/js/script.js"></script>
+  <script src="utils/js/ajaxConn.js"></script>
+  <script src="utils/bootstrap-4.0.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

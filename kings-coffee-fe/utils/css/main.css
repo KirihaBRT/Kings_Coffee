@@ -1,0 +1,595 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+  :root {
+  --color-primary: #6C9BCF;
+  --color-danger: #FF0060;
+  --color-success: #1B9C85;
+  --color-warning: #F7D060;
+  --color-white: #fff;
+  --color-info-dark: #7d8da1;
+  --color-dark: #363949;
+  --color-light: rgba(132, 139, 200, 0.18);
+  --color-dark-variant: #677483;
+  --color-background: #f6f6f9;
+
+  --card-border-radius: 2rem;
+  --border-radius-1: 0.4rem;
+  --border-radius-2: 1.2rem;
+
+  --card-padding: 1.8rem;
+  --padding-1: 1.2rem;
+
+  --box-shadow: 0 0.5rem 1.5rem var(--color-light);
+}
+
+/* General Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  background-color: var(--color-background);
+  color: white;
+  background-size: cover;
+  background-position: center;
+}
+
+/* Header Styles */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #333;
+    overflow: hidden;
+    margin-bottom: 10px;
+  }
+
+.loading-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 100px;
+    width: 100%;
+    height: 100%;
+    z-index: 1000; /* Set a high z-index to make sure it appears above other elements */
+    cursor: wait; /* Change cursor to wait during loading */
+}
+
+.loading-container img {
+    width: 200px;
+    height: 200px;
+    margin-bottom: 10px;
+}
+
+.loading-container p {
+  font-size: 20px;
+  color: #744220;
+  margin-top: -70px;
+  z-index: 2;
+}
+
+/* Page Content Styles */
+.page-content {
+  padding: 30px;
+  overflow-x: hidden;
+  transition: margin-left 0.5s, width 0.5s; 
+  color: #1b1a1b;
+  margin: 20px;
+}
+
+.page-content > div {
+  transition: margin-left 0.5s; 
+  margin-left: 0; 
+}
+
+/* Logout Button Styles */
+.logout-btn {
+    padding: 10px 16px;
+    background-color: #c39059;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  
+/* Add hover effect and border radius */
+.logout-btn:hover {
+    background-color: #9e7548;
+}
+  
+/* Adjust the position of the Logout button to the right */
+.header > .logout-btn {
+    margin-left: auto;
+} 
+
+/* Sidebar Styles */
+.side-bar {
+  background: #1b1a1b;
+  backdrop-filter: blur(15px);
+  width: 250px;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: -250px;
+  overflow-y: auto;
+  transition: 0.6s ease;
+  transition-property: left;
+}
+
+.side-bar::-webkit-scrollbar {
+  width: 0px;
+}
+
+.side-bar::-webkit-scrollbar-track {
+  display: none;
+}
+
+.side-bar::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 10px;
+}
+
+.side-bar.active {
+  left: 0;
+}
+
+/* Sidebar Header Styles */
+.side-bar header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.side-bar header img {
+  height: 50px;
+  width: 150px;
+  margin-left: 10px;
+}
+
+/* Sidebar Menu Styles */
+.side-bar .sidemenu {
+  width: 100%;
+  margin-top: 30px;
+}
+
+.side-bar .sidemenu .item {
+  position: relative;
+  cursor: pointer;
+}
+
+.side-bar .sidemenu .item a {
+  color: #fff;
+  font-size: 16px;
+  text-decoration: none;
+  display: block;
+  padding: 5px 30px;
+  line-height: 60px;
+}
+
+.side-bar .sidemenu .item a:hover {
+  background: #744220;
+  transition: 0.3s ease;
+}
+
+.side-bar .sidemenu .item i {
+  margin-right: 15px;
+}
+
+.side-bar .sidemenu .item a .dropdown {
+  position: absolute;
+  right: 0;
+  margin: 20px;
+  transition: 0.3s ease;
+}
+
+/* Sub-menu Styles */
+.side-bar .sidemenu .item .sub-menu {
+  background: #262627;
+  display: none;
+}
+
+.side-bar .sidemenu .item .sub-menu.active {
+  display: block;
+}
+
+.side-bar .sidemenu .item .sub-menu a {
+  padding-left: 80px;
+}
+
+.side-bar.active + .page-content {
+  margin-left: 260px; /* Adjusted margin-left to accommodate the sidebar width */
+  width: calc(100% - 260px); /* Adjusted width to accommodate the sidebar */
+}
+
+/* Adjust the width when the sidebar is active */
+.side-bar.active + .page-content .table-container {
+  width: 100%;
+}
+
+.side-bar.active + .loading-container {
+  margin-left: 460px;
+  width: calc(100% - 460px);
+}
+
+/* Close Button Styles */
+.close-btn {
+  position: absolute;
+  color: #fff;
+  font-size: 23px;
+  right: 0px;
+  margin: 15px;
+  cursor: pointer;
+}
+
+/*save button styles*/
+.btn-add, .save-changes-btn {
+  padding: 8px 16px;
+  background-color: #c39059;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.btn-add:hover, .save-changes-btn:hover {
+  background-color: #9e7548;
+}
+
+.close-modal {
+  background-color: #ccc;
+  color: #333;
+  padding: 2px 8px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: right;
+  margin-top: 20px;
+}
+
+.close-modal:hover {
+  background-color: #818181;
+  color: white;
+}
+
+.delete-btn-confirmed {
+  background-color: #ff4949;
+  color: #ffffff;
+  padding: 2px 8px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: left;
+  margin-top: 20px;
+}
+
+.delete-btn-confirmed:hover {
+  background-color: #b72c2c;
+  color: #ffffff;
+}
+
+/* Menu Button Styles */
+.menu-btn {
+  color: rgb(255, 255, 255);
+  font-size: 35px;
+  cursor: pointer;
+  width: 30px;
+}
+
+.add-btn-employee, .add-btn-menu {
+  padding: 8px 20px;
+  background-color: #c39059;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  top: 0;
+  right: 0;
+  position: absolute;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  margin-right: 30px;
+}
+
+/* Main Content Styles */
+main {
+  transition: margin-left 0.5s; 
+}
+
+main .analyse {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.6rem;
+  transition: margin-left 0.5s; /* Keep transition for the content inside main */
+}
+
+main .analyse > div {
+  background-color: var(--color-white);
+  padding: var(--card-padding);
+  border-radius: var(--card-border-radius);
+  margin-top: 1rem;
+  box-shadow: var(--box-shadow);
+  cursor: pointer;
+  transition: box-shadow 0.3s ease, transform 0.3s ease; /* Keep transition for the card */
+}
+
+main .analyse > div:hover {
+  box-shadow: none;
+}
+
+main .analyse > div .status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+main .analyse h3 {
+  font-size: 1rem;
+}
+
+/* Recent Orders Styles */
+main .recent-orders {
+  margin-top: 1.3rem;
+}
+
+main .recent-orders h2 {
+  margin-bottom: 0.8rem;
+}
+
+main .recent-orders table {
+  background-color: var(--color-white);
+  width: 100%;
+  padding: var(--card-padding);
+  text-align: center;
+  box-shadow: var(--box-shadow);
+  border-radius: var(--card-border-radius);
+  transition: all 0.3s ease;
+}
+
+main .recent-orders table tbody tr:hover {
+  background-color: #ddd;
+  transition: background-color 0.3s ease;
+}
+
+main .recent-orders table:hover {
+  box-shadow: none;
+}
+
+main .recent-orders table tbody td {
+  height: 2.8rem;
+  border-bottom: 1px solid var(--color-light);
+  color: var(--color-dark-variant);
+}
+
+main .recent-orders table tbody tr:last-child td {
+  border: none;
+}
+
+main .recent-orders a {
+  text-align: center;
+  display: block;
+  margin: 1rem auto;
+  color: var(--color-primary);
+}
+
+/* Right Section Styles
+.right-section {
+  margin-top: 1.4rem;
+}
+
+.right-section .nav {
+  display: flex;
+  justify-content: end;
+  gap: 2rem;
+}
+
+.right-section .nav .profile {
+  display: flex;
+  gap: 2rem;
+  text-align: right;
+}
+
+.right-section .nav .profile .profile-photo {
+  width: 2.8rem;
+  height: 2.8rem;
+  border-radius: 50%;
+  overflow: hidden;
+}
+*/
+
+/* Add a common style for the table container */
+.table-container {
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(101, 135, 255, 0.2);
+  border-radius: 10px;
+  padding: 30px;
+  margin-top: 20px;
+  overflow-x: auto;
+  width: 80%; /* Set the width to 80% */
+  margin-left: auto; /* Center the table container by setting margin-left and margin-right to auto */
+  margin-right: auto;
+  position: relative;
+}
+
+/* Add a common style for the employee and menu management tables */
+.employee-table,
+.menu-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top:20px;
+}
+
+.employee-table th,
+.employee-table td,
+.menu-table th,
+.menu-table td {
+  height: 50px;
+  border: 1px solid #f8f8f8;
+  padding: 8px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.employee-table th,
+.menu-table th {
+  background-color: #f2f2f2;
+}
+
+/* Add styles for the action buttons */
+.employee-table .actions,
+.menu-table .actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.employee-table .edit-btn,
+.employee-table .delete-btn,
+.menu-table .edit-btn,
+.menu-table .delete-btn {
+  padding: 8px 12px;
+  margin-left: 5px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.employee-table .edit-btn,
+.menu-table .edit-btn {
+  background-color: #5ce267;
+  color: #fff;
+}
+
+.employee-table .delete-btn,
+.menu-table .delete-btn {
+  background-color: #d9534f;
+  color: #fff;
+}
+
+.dashboard-content,
+.employee-content,
+.menu-content,
+.about-content {
+  width: 100%;
+  transition: margin-left 0.5s, width 0.5s;
+  position: relative;
+  /* Update the z-index to a positive value, for example: */
+  z-index: 1;
+}
+
+.dashboard-content.content-pulled,
+.employee-content.content-pulled,
+.menu-content.content-pulled,
+.about-content.content-pulled {
+  position: relative;
+  /* Update the z-index to a positive value, for example: */
+  z-index: 1;
+}
+
+
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+/* Footer Styles */
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 10px;
+  background-color: #333;
+  text-align: center;
+  color: #fff;
+}
+
+/* Hover effects for buttons */
+.employee-table .edit-btn:hover,
+.menu-table .edit-btn:hover {
+  background-color: #4cae4c;
+}
+
+.employee-table .delete-btn:hover,
+.menu-table .delete-btn:hover {
+  background-color: rgba(166, 44, 33, 0.933);
+}
+
+.add-btn-employee:hover, .add-btn-menu:hover {
+  background-color: #744220;
+}
+
+#searchInput {
+  height: 30px;
+  width: 24%;
+  border: 1px solid #ccc; /* Lighter color for the border */
+}
+
+#searchInputMenu {
+  height: 30px;
+  width: 24%;
+  border: 1px solid #ccc; /* Lighter color for the border */
+}
+
+/* Style the tiles containing the products */
+#productsSection {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+}
+.tile {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+  max-width: 300px;
+  width: 100%;
+}
+
+/* Style the product image */
+.tile img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+
+/* Style the product name */
+.product-name {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+/* Style the buttons */
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.button {
+  background-color: #532823; /* Coffee brown */
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #3b2320; /* Darker shade of brown */
+}
